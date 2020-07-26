@@ -87,6 +87,52 @@ Then run the below command:
 ansible-playbook -i inventory.yaml ./playbooks/prepare.yaml
 ```
 
+This is the installing log you should see after running the prepare.yaml playbook.
+
+```bash
+PLAY [Prepare all host for using ansible scripts] *******************************************
+
+TASK [Kill all apt process and unlock lock apt apt-get] *************************************
+fatal: [ansible-vm1]: FAILED! => ...
+fatal: [ansible-vm2]: FAILED! => ...
+
+TASK [Remove /var/lib/apt/lists/lock] *******************************************************
+fatal: [ansible-vm1]: FAILED! => ...
+fatal: [ansible-vm2]: FAILED! => ...
+
+TASK [Remove /var/cache/apt/archives/lock] **************************************************
+changed: [ansible-vm1]
+changed: [ansible-vm2]
+
+TASK [Remove /var/lib/dpkg/lock] ************************************************************
+changed: [ansible-vm1]
+changed: [ansible-vm2]
+
+TASK [Reconfigure dpkg] *********************************************************************
+changed: [ansible-vm1]
+changed: [ansible-vm2]
+
+TASK [Update package] ***********************************************************************
+changed: [ansible-vm2]
+changed: [ansible-vm1]
+
+TASK [Install needed package] ***************************************************************
+changed: [ansible-vm1] => (item=python2.7)
+changed: [ansible-vm2] => (item=python2.7)
+changed: [ansible-vm1] => (item=python-pip)
+changed: [ansible-vm2] => (item=python-pip)
+
+TASK [Update pip] ***************************************************************************
+changed: [ansible-vm1]
+changed: [ansible-vm2]
+
+PLAY RECAP **********************************************************************************
+ansible-vm1                : ok=8    changed=8    unreachable=0    failed=0
+ansible-vm2                : ok=8    changed=8    unreachable=0    failed=0
+```
+
+After running the above command Python and pip should be installed on the defined hosts.
+
 ## Next
 
 Next steps comprise adding new required packages.
