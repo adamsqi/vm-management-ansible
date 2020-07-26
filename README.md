@@ -77,6 +77,9 @@ sudo apt install ansible
 git clone <repository_url>
 ```
 
+
+## Usage
+
 Enter the root folder of the repo and configure host information in the `inverntory.yaml` file.
 Then run the below command:
 
@@ -84,3 +87,10 @@ Then run the below command:
 ansible-playbook -i inventory.yaml ./playbooks/prepare.yaml
 ```
 
+## Next
+
+Next steps comprise adding new required packages.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
